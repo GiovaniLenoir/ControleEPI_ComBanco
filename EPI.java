@@ -3,12 +3,13 @@ public class EPI {
     private String nome;
     private String validade;
 
-    public EPI(String nome, String validade) {
+    public EPI(int id, String nome, String validade) {
+        this.id = id;
         this.nome = nome;
         this.validade = validade;
     }
-    public EPI(int id, String nome, String validade) {
-        this.id = id;
+
+    public EPI(String nome, String validade) {
         this.nome = nome;
         this.validade = validade;
     }
@@ -16,12 +17,26 @@ public class EPI {
     public int getId() {
         return id;
     }
-
     public String getNome() {
         return nome;
     }
-
     public String getValidade() {
         return validade;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public void setValidade(String validade) {
+        this.validade = validade;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + ", Nome: " + nome + ", Validade: " + validade;
+    }
 }
+
