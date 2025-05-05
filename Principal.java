@@ -10,7 +10,7 @@ public class Principal {
 
         int opcao;
         do {
-            System.out.println("\n==== CONTROLE DE EPI ====");
+            System.out.println("\n===== CONTROLE DE EPI =====");
             System.out.println("1. Cadastrar usuário");
             System.out.println("2. Listar usuários");
             System.out.println("3. Atualizar usuário");
