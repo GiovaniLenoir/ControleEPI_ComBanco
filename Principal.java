@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         EPIDao epiDao = new EPIDao();
@@ -48,7 +48,7 @@ public class Main {
                     String senhaUsuario = scanner.nextLine();
                     System.out.print("Digite o perfil do usuário: ");
                     String perfilUsuario = scanner.nextLine();
-                    Usuario usuario = new Usuario(nomeUsuario, emailUsuario, senhaUsuario, perfilUsuario);
+                    Usuario usuario = new Usuario(0, nomeUsuario, emailUsuario, senhaUsuario, perfilUsuario);
                     usuarioDao.inserirUsuario(usuario);
                     break;
 
