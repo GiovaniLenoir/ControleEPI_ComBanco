@@ -1,103 +1,185 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        EPIDao epiDao = new EPIDao();
         UsuarioDao usuarioDao = new UsuarioDao();
+        EPIDao epiDao = new EPIDao();
         EmprestimoDao emprestimoDao = new EmprestimoDao();
         DevolucaoDao devolucaoDao = new DevolucaoDao();
 
-        while (true) {
-            System.out.println("\nMenu:");
-            System.out.println("1. Inserir EPI");
-            System.out.println("2. Listar EPIs");
-            System.out.println("3. Inserir Usuário");
-            System.out.println("4. Listar Usuários");
-            System.out.println("5. Registrar Empréstimo");
-            System.out.println("6. Listar Empréstimos");
-            System.out.println("7. Registrar Devolução");
-            System.out.println("8. Listar Devoluções");
-            System.out.println("9. Sair");
+        int opcao;
+        do {
+            System.out.println("\n==== CONTROLE DE EPI ====");
+            System.out.println("1. Cadastrar usuário");
+            System.out.println("2. Listar usuários");
+            System.out.println("3. Atualizar usuário");
+            System.out.println("4. Excluir usuário");
+
+            System.out.println("5. Cadastrar EPI");
+            System.out.println("6. Listar EPIs");
+            System.out.println("7. Atualizar EPI");
+            System.out.println("8. Excluir EPI");
+
+            System.out.println("9. Registrar empréstimo");
+            System.out.println("10. Listar empréstimos");
+            System.out.println("11. Atualizar empréstimo");
+            System.out.println("12. Excluir empréstimo");
+
+            System.out.println("13. Registrar devolução");
+            System.out.println("14. Listar devoluções");
+            System.out.println("15. Atualizar devolução");
+            System.out.println("16. Excluir devolução");
+
+            System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
+            opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    System.out.print("Digite o nome do EPI: ");
-                    String nomeEpi = scanner.nextLine();
-                    System.out.print("Digite a validade do EPI: ");
-                    String validadeEpi = scanner.nextLine();
-                    EPI epi = new EPI(nomeEpi, validadeEpi);
-                    epiDao.inserirEPI(epi);
+                    System.out.print("Nome do usuário: ");
+                    String nome = scanner.nextLine();
+                    System.out.print("Email do usuário: ");
+                    String email = scanner.nextLine();
+                    System.out.print("Senha do usuário: ");
+                    String senha = scanner.nextLine();
+                    System.out.print("Perfil do usuário: ");
+                    String perfil = scanner.nextLine();
+                    Usuario u = new Usuario(0, nome, email, senha, perfil);
+                    usuarioDao.inserirUsuario(u);
                     break;
 
                 case 2:
-                    ArrayList<EPI> epis = epiDao.listarEPIs();
-                    epis.forEach(System.out::println);
+                    usuarioDao.listarUsuarios().forEach(System.out::println);
                     break;
 
                 case 3:
-                    System.out.print("Digite o nome do usuário: ");
-                    String nomeUsuario = scanner.nextLine();
-                    System.out.print("Digite o e-mail do usuário: ");
-                    String emailUsuario = scanner.nextLine();
-                    System.out.print("Digite a senha do usuário: ");
-                    String senhaUsuario = scanner.nextLine();
-                    System.out.print("Digite o perfil do usuário: ");
-                    String perfilUsuario = scanner.nextLine();
-                    Usuario usuario = new Usuario(0, nomeUsuario, emailUsuario, senhaUsuario, perfilUsuario);
-                    usuarioDao.inserirUsuario(usuario);
+                    System.out.print("ID do usuário: ");
+                    int idU = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Novo nome: ");
+                    nome = scanner.nextLine();
+                    System.out.print("Novo email: ");
+                    email = scanner.nextLine();
+                    System.out.print("Nova senha: ");
+                    senha = scanner.nextLine();
+                    System.out.print("Novo perfil: ");
+                    perfil = scanner.nextLine();
+                    Usuario uAtualizado = new Usuario(idU, nome, email, senha, perfil);
+                    usuarioDao.atualizarUsuario(uAtualizado);
                     break;
 
                 case 4:
-                    ArrayList<Usuario> usuarios = usuarioDao.listarUsuarios();
-                    usuarios.forEach(System.out::println);
+                    System.out.print("ID do usuário para excluir: ");
+                    int idExcluirU = Integer.parseInt(scanner.nextLine());
+                    usuarioDao.excluirUsuario(idExcluirU);
                     break;
 
                 case 5:
-                    System.out.print("Digite o ID do colaborador: ");
-                    int idColaborador = scanner.nextInt();
-                    System.out.print("Digite o ID do EPI: ");
-                    int idEpiEmprestimo = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Digite a data do empréstimo (dd/MM/yyyy): ");
-                    String dataEmprestimo = scanner.nextLine();
-                    Emprestimo emprestimo = new Emprestimo(idColaborador, idEpiEmprestimo, dataEmprestimo);
-                    emprestimoDao.inserirEmprestimo(emprestimo);
+                    System.out.print("Nome do EPI: ");
+                    String nomeEpi = scanner.nextLine();
+                    System.out.print("Validade (AAAA-MM-DD): ");
+                    String validade = scanner.nextLine();
+                    EPI epi = new EPI(nomeEpi, validade);
+                    epiDao.inserirEPI(epi);
                     break;
 
                 case 6:
-                    ArrayList<Emprestimo> emprestimos = emprestimoDao.listarEmprestimos();
-                    emprestimos.forEach(System.out::println);
+                    epiDao.listarEPIs().forEach(System.out::println);
                     break;
 
                 case 7:
-                    System.out.print("Digite o ID do empréstimo: ");
-                    int idEmprestimoDevolucao = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Digite a data da devolução (dd/MM/yyyy): ");
-                    String dataDevolucao = scanner.nextLine();
-                    Devolucao devolucao = new Devolucao(idEmprestimoDevolucao, dataDevolucao);
-                    devolucaoDao.inserirDevolucao(devolucao);
+                    System.out.print("ID do EPI: ");
+                    int idEpi = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Novo nome: ");
+                    nomeEpi = scanner.nextLine();
+                    System.out.print("Nova validade (AAAA-MM-DD): ");
+                    validade = scanner.nextLine();
+                    EPI epiAtualizado = new EPI(idEpi, nomeEpi, validade);
+                    epiDao.atualizarEPI(epiAtualizado);
                     break;
 
                 case 8:
-                    ArrayList<Devolucao> devolucoes = devolucaoDao.listarDevolucoes();
-                    devolucoes.forEach(System.out::println);
+                    System.out.print("ID do EPI para excluir: ");
+                    int idExcluirEpi = Integer.parseInt(scanner.nextLine());
+                    epiDao.excluirEPI(idExcluirEpi);
                     break;
 
-                case 9: 
-                    System.out.println("Saindo...");
-                    scanner.close();
-                    return;
+                case 9:
+                    System.out.print("ID do colaborador: ");
+                    int idColab = Integer.parseInt(scanner.nextLine());
+                    System.out.print("ID do EPI: ");
+                    int idEpiEmp = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Data do empréstimo (AAAA-MM-DD): ");
+                    String dataEmprestimo = scanner.nextLine();
+                    Emprestimo emp = new Emprestimo(idColab, idEpiEmp, dataEmprestimo);
+                    emprestimoDao.inserirEmprestimo(emp);
+                    break;
+
+                case 10:
+                    emprestimoDao.listarEmprestimos().forEach(System.out::println);
+                    break;
+
+                case 11:
+                    System.out.print("ID do empréstimo: ");
+                    int idEmp = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Novo ID do colaborador: ");
+                    idColab = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Novo ID do EPI: ");
+                    idEpiEmp = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Nova data (AAAA-MM-DD): ");
+                    dataEmprestimo = scanner.nextLine();
+                    Emprestimo empAtualizado = new Emprestimo(idEmp, idColab, idEpiEmp, dataEmprestimo);
+                    emprestimoDao.atualizarEmprestimo(empAtualizado);
+                    break;
+
+                case 12:
+                    System.out.print("ID do empréstimo para excluir: ");
+                    int idExcluirEmp = Integer.parseInt(scanner.nextLine());
+                    emprestimoDao.excluirEmprestimo(idExcluirEmp);
+                    break;
+
+                case 13:
+                    System.out.print("ID do empréstimo: ");
+                    int idEmpDev = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Data da devolução (AAAA-MM-DD): ");
+                    String dataDevolucao = scanner.nextLine();
+                    Devolucao dev = new Devolucao(idEmpDev, dataDevolucao);
+                    devolucaoDao.inserirDevolucao(dev);
+                    break;
+
+                case 14:
+                    devolucaoDao.listarDevolucoes().forEach(System.out::println);
+                    break;
+
+                case 15:
+                    System.out.print("ID da devolução: ");
+                    int idDev = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Novo ID do empréstimo: ");
+                    idEmpDev = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Nova data da devolução (AAAA-MM-DD): ");
+                    dataDevolucao = scanner.nextLine();
+                    Devolucao devAtualizada = new Devolucao(idDev, idEmpDev, dataDevolucao);
+                    devolucaoDao.atualizarDevolucao(devAtualizada);
+                    break;
+
+                case 16:
+                    System.out.print("ID da devolução para excluir: ");
+                    int idExcluirDev = Integer.parseInt(scanner.nextLine());
+                    devolucaoDao.excluirDevolucao(idExcluirDev);
+                    break;
+
+                case 0:
+                    System.out.println("Encerrando o sistema...");
+                    break;
 
                 default:
                     System.out.println("Opção inválida.");
             }
-        }
+
+        } while (opcao != 0);
+
+        scanner.close();
     }
 }
+
 
