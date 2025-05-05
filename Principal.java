@@ -16,22 +16,22 @@ public class Principal {
             System.out.println("3. Atualizar usuário");
             System.out.println("4. Excluir usuário");
 
-            System.out.println("5. Cadastrar EPI");
+            System.out.println("\n5. Cadastrar EPI");
             System.out.println("6. Listar EPIs");
             System.out.println("7. Atualizar EPI");
             System.out.println("8. Excluir EPI");
 
-            System.out.println("9. Registrar empréstimo");
+            System.out.println("\n9. Registrar empréstimo");
             System.out.println("10. Listar empréstimos");
             System.out.println("11. Atualizar empréstimo");
             System.out.println("12. Excluir empréstimo");
 
-            System.out.println("13. Registrar devolução");
+            System.out.println("\n13. Registrar devolução");
             System.out.println("14. Listar devoluções");
             System.out.println("15. Atualizar devolução");
             System.out.println("16. Excluir devolução");
 
-            System.out.println("0. Sair");
+            System.out.println("\n0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = Integer.parseInt(scanner.nextLine());
 
