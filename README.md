@@ -80,6 +80,7 @@ Sistema simples em **Java** com acesso a banco de dados **MySQL**, para controle
 - ControleEPI_ComBanco/
 - ├── Main.java
 - ├── Conexao.java
+- ├── controle_epi.sql
 - ├── EPI.java
 - ├── EPIDao.java
 - ├── Usuario.java
