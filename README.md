@@ -41,58 +41,37 @@ Sistema simples em **Java** com acesso a banco de dados **MySQL**, para controle
 
 -sql
 
-CREATE TABLE usuario (
+- CREATE TABLE usuario (
+    - id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    - nome VARCHAR(100) NOT NULL,
+    - email VARCHAR(100) UNIQUE NOT NULL,
+    - senha VARCHAR(255) NOT NULL,
+    - perfil ENUM('administrador', 'colaborador', 'gerente') NOT NULL
+- );
 
-    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    
-    nome VARCHAR(100) NOT NULL,
-    
-    email VARCHAR(100) NOT NULL,
-    
-    senha VARCHAR(100) NOT NULL,
-    
-    perfil VARCHAR(50) NOT NULL
-    
-);
+- CREATE TABLE epi (
+    - id_epi INT AUTO_INCREMENT PRIMARY KEY,
+    - nome VARCHAR(100) NOT NULL,
+    - quantidade INT NOT NULL
+- );
 
-CREATE TABLE epi (
+- CREATE TABLE emprestimo (
+    - id_emprestimo INT AUTO_INCREMENT PRIMARY KEY,
+    - id_usuario INT NOT NULL,
+    - id_epi INT NOT NULL,
+    - data_retirada DATETIME NOT NULL,
+    - data_prevista_devolucao DATETIME NOT NULL,
+    - confirmacao_retirada TINYINT(1) NOT NULL,
+    - FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    - FOREIGN KEY (id_epi) REFERENCES epi(id_epi)
+- );
 
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    
-    nome VARCHAR(100) NOT NULL,
-    
-    validade DATE NOT NULL
-    
-);
-
-
-CREATE TABLE emprestimo (
-
-    id_emprestimo INT AUTO_INCREMENT PRIMARY KEY,
-    
-    id_colaborador INT,
-    
-    id_epi INT,
-    
-    data_emprestimo DATE,
-    
-    FOREIGN KEY (id_colaborador) REFERENCES usuario(id_usuario),
-    
-    FOREIGN KEY (id_epi) REFERENCES epi(id)
-    
-);
-
-CREATE TABLE devolucao (
-
-    id_devolucao INT AUTO_INCREMENT PRIMARY KEY,
-    
-    id_emprestimo INT,
-    
-    data_devolucao DATE,
-    
-    FOREIGN KEY (id_emprestimo) REFERENCES emprestimo(id_emprestimo)
-    
-);
+- CREATE TABLE devolucao (
+    - id_devolucao INT AUTO_INCREMENT PRIMARY KEY,
+    - id_emprestimo INT NOT NULL,
+    - data_devolucao DATETIME NOT NULL,
+    - FOREIGN KEY (id_emprestimo) REFERENCES emprestimo(id_emprestimo)
+- );
 
 ---
 
