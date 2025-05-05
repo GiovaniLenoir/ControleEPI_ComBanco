@@ -50,6 +50,7 @@ devolucao: Armazena informações sobre as devoluções de EPIs.
 
 # Instalação
 -Pré-requisitos
+
 Java 8 ou superior
 
 MySQL
@@ -152,11 +153,13 @@ Digite a senha do usuário: 123456
 
 Digite o perfil do usuário: Colaborador
 
+
 -Cadastro de um novo EPI:
 
 Digite o nome do EPI: Capacete
 
 Digite a validade do EPI (formato yyyy-MM-dd): 2026-05-01
+
 
 -Empréstimo de EPI:
 
@@ -165,6 +168,7 @@ Digite o ID do colaborador: 1
 Digite o ID do EPI: 2
 
 Digite a data do empréstimo (formato yyyy-MM-dd): 2025-05-01
+
 
 -Devolução de EPI:
 
