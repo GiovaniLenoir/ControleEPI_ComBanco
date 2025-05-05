@@ -39,8 +39,7 @@ Sistema simples em **Java** com acesso a banco de dados **MySQL**, para controle
 
 ### 💽 Script SQL para criar o banco de dados
 
-- Arquivo SQL para adicionar o banco de dados
-- controle_epi
+- Arquivo SQL para adicionar o banco de dados controle_epi
 
 - CREATE TABLE usuario (
     - id_usuario INT AUTO_INCREMENT PRIMARY KEY,
