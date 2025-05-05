@@ -3,12 +3,14 @@ import java.util.ArrayList;
 
 public class EmprestimoDao {
     public void inserirEmprestimo(Emprestimo emp) {
-        String sql = "INSERT INTO emprestimo (id_colaborador, id_epi, data_emprestimo) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO emprestimo (id_usuario, id_epi, data_retirada, data_prevista_devolucao, confirmacao_retirada) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, emp.getIdColaborador());
+            stmt.setInt(1, emp.getIdUsuario());
             stmt.setInt(2, emp.getIdEpi());
-            stmt.setString(3, emp.getDataEmprestimo());
+            stmt.setString(3, emp.getDataRetirada());
+            stmt.setString(4, emp.getDataPrevistaDevolucao());
+            stmt.setBoolean(5, emp.isConfirmacaoRetirada());
             stmt.executeUpdate();
             System.out.println("Empréstimo registrado com sucesso!");
         } catch (SQLException e) {
@@ -25,9 +27,11 @@ public class EmprestimoDao {
             while (rs.next()) {
                 Emprestimo emp = new Emprestimo(
                         rs.getInt("id_emprestimo"),
-                        rs.getInt("id_colaborador"),
+                        rs.getInt("id_usuario"),
                         rs.getInt("id_epi"),
-                        rs.getString("data_emprestimo")
+                        rs.getString("data_retirada"),
+                        rs.getString("data_prevista_devolucao"),
+                        rs.getBoolean("confirmacao_retirada")
                 );
                 lista.add(emp);
             }
@@ -38,13 +42,15 @@ public class EmprestimoDao {
     }
 
     public void atualizarEmprestimo(Emprestimo emp) {
-        String sql = "UPDATE emprestimo SET id_colaborador = ?, id_epi = ?, data_emprestimo = ? WHERE id_emprestimo = ?";
+        String sql = "UPDATE emprestimo SET id_usuario = ?, id_epi = ?, data_retirada = ?, data_prevista_devolucao = ?, confirmacao_retirada = ? WHERE id_emprestimo = ?";
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, emp.getIdColaborador());
+            stmt.setInt(1, emp.getIdUsuario());
             stmt.setInt(2, emp.getIdEpi());
-            stmt.setString(3, emp.getDataEmprestimo());
-            stmt.setInt(4, emp.getId());
+            stmt.setString(3, emp.getDataRetirada());
+            stmt.setString(4, emp.getDataPrevistaDevolucao());
+            stmt.setBoolean(5, emp.isConfirmacaoRetirada());
+            stmt.setInt(6, emp.getId());
             int linhasAfetadas = stmt.executeUpdate();
             if (linhasAfetadas > 0) {
                 System.out.println("Empréstimo atualizado com sucesso!");
@@ -72,4 +78,6 @@ public class EmprestimoDao {
         }
     }
 }
+
+
 

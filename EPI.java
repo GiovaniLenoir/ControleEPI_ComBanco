@@ -1,42 +1,47 @@
 public class EPI {
     private int id;
     private String nome;
-    private String validade;
+    private int quantidade;
 
-    public EPI(int id, String nome, String validade) {
+    public EPI(int id, String nome, int quantidade) {
         this.id = id;
         this.nome = nome;
-        this.validade = validade;
+        this.quantidade = quantidade;
     }
 
-    public EPI(String nome, String validade) {
+    public EPI(String nome, int quantidade) {
         this.nome = nome;
-        this.validade = validade;
+        this.quantidade = quantidade;
     }
 
     public int getId() {
         return id;
     }
+
     public String getNome() {
         return nome;
     }
-    public String getValidade() {
-        return validade;
+
+    public int getQuantidade() {
+        return quantidade;
     }
 
     public void setId(int id) {
         this.id = id;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setValidade(String validade) {
-        this.validade = validade;
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Nome: " + nome + ", Validade: " + validade;
+        return "ID: " + id + ", Nome: " + nome + ", Quantidade: " + quantidade;
     }
 }
+
 

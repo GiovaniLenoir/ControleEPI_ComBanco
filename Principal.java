@@ -43,7 +43,7 @@ public class Principal {
                     String email = scanner.nextLine();
                     System.out.print("Senha do usuário: ");
                     String senha = scanner.nextLine();
-                    System.out.print("Perfil do usuário: ");
+                    System.out.print("Perfil (administrador/colaborador/gerente): ");
                     String perfil = scanner.nextLine();
                     Usuario u = new Usuario(0, nome, email, senha, perfil);
                     usuarioDao.inserirUsuario(u);
@@ -77,9 +77,9 @@ public class Principal {
                 case 5:
                     System.out.print("Nome do EPI: ");
                     String nomeEpi = scanner.nextLine();
-                    System.out.print("Validade (AAAA-MM-DD): ");
-                    String validade = scanner.nextLine();
-                    EPI epi = new EPI(nomeEpi, validade);
+                    System.out.print("Quantidade: ");
+                    int quantidade = Integer.parseInt(scanner.nextLine());
+                    EPI epi = new EPI(nomeEpi, quantidade);
                     epiDao.inserirEPI(epi);
                     break;
 
@@ -92,9 +92,9 @@ public class Principal {
                     int idEpi = Integer.parseInt(scanner.nextLine());
                     System.out.print("Novo nome: ");
                     nomeEpi = scanner.nextLine();
-                    System.out.print("Nova validade (AAAA-MM-DD): ");
-                    validade = scanner.nextLine();
-                    EPI epiAtualizado = new EPI(idEpi, nomeEpi, validade);
+                    System.out.print("Nova quantidade: ");
+                    quantidade = Integer.parseInt(scanner.nextLine());
+                    EPI epiAtualizado = new EPI(idEpi, nomeEpi, quantidade);
                     epiDao.atualizarEPI(epiAtualizado);
                     break;
 
@@ -105,13 +105,18 @@ public class Principal {
                     break;
 
                 case 9:
-                    System.out.print("ID do colaborador: ");
-                    int idColab = Integer.parseInt(scanner.nextLine());
+                    System.out.print("ID do usuário: ");
+                    int idUsuarioEmp = Integer.parseInt(scanner.nextLine());
                     System.out.print("ID do EPI: ");
                     int idEpiEmp = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Data do empréstimo (AAAA-MM-DD): ");
-                    String dataEmprestimo = scanner.nextLine();
-                    Emprestimo emp = new Emprestimo(idColab, idEpiEmp, dataEmprestimo);
+                    System.out.print("Data de retirada (YYYY-MM-DD HH:MM:SS): ");
+                    String dataRetirada = scanner.nextLine();
+                    System.out.print("Data prevista de devolução (YYYY-MM-DD HH:MM:SS): ");
+                    String dataPrevista = scanner.nextLine();
+                    System.out.print("Confirmação de retirada (1 para sim, 0 para não): ");
+                    int confirmacaoInt = Integer.parseInt(scanner.nextLine());
+                    boolean confirmacao = (confirmacaoInt == 1);
+                    Emprestimo emp = new Emprestimo(idUsuarioEmp, idEpiEmp, dataRetirada, dataPrevista, confirmacao);
                     emprestimoDao.inserirEmprestimo(emp);
                     break;
 
@@ -122,13 +127,18 @@ public class Principal {
                 case 11:
                     System.out.print("ID do empréstimo: ");
                     int idEmp = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Novo ID do colaborador: ");
-                    idColab = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Novo ID do usuário: ");
+                    int novoIdUsuario = Integer.parseInt(scanner.nextLine());
                     System.out.print("Novo ID do EPI: ");
-                    idEpiEmp = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Nova data (AAAA-MM-DD): ");
-                    dataEmprestimo = scanner.nextLine();
-                    Emprestimo empAtualizado = new Emprestimo(idEmp, idColab, idEpiEmp, dataEmprestimo);
+                    int novoIdEpi = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Nova data de retirada (YYYY-MM-DD HH:MM:SS): ");
+                    String novaDataRetirada = scanner.nextLine();
+                    System.out.print("Nova data prevista de devolução (YYYY-MM-DD HH:MM:SS): ");
+                    String novaDataPrevista = scanner.nextLine();
+                    System.out.print("Nova confirmação de retirada (1 ou 0): ");
+                    int novaConfirmacaoInt = Integer.parseInt(scanner.nextLine());
+                    boolean novaConfirmacao = (novaConfirmacaoInt == 1);
+                    Emprestimo empAtualizado = new Emprestimo(idEmp, novoIdUsuario, novoIdEpi, novaDataRetirada, novaDataPrevista, novaConfirmacao);
                     emprestimoDao.atualizarEmprestimo(empAtualizado);
                     break;
 
@@ -155,10 +165,10 @@ public class Principal {
                     System.out.print("ID da devolução: ");
                     int idDev = Integer.parseInt(scanner.nextLine());
                     System.out.print("Novo ID do empréstimo: ");
-                    idEmpDev = Integer.parseInt(scanner.nextLine());
+                    int novoIdEmpDev = Integer.parseInt(scanner.nextLine());
                     System.out.print("Nova data da devolução (AAAA-MM-DD): ");
-                    dataDevolucao = scanner.nextLine();
-                    Devolucao devAtualizada = new Devolucao(idDev, idEmpDev, dataDevolucao);
+                    String novaDataDev = scanner.nextLine();
+                    Devolucao devAtualizada = new Devolucao(idDev, novoIdEmpDev, novaDataDev);
                     devolucaoDao.atualizarDevolucao(devAtualizada);
                     break;
 
@@ -181,5 +191,7 @@ public class Principal {
         scanner.close();
     }
 }
+
+
 
 
