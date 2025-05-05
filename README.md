@@ -1,68 +1,41 @@
 # ControleEPI_ComBanco
 
-# Controle de EPIs com Banco de Dados
-Este projeto visa a gestão de EPIs (Equipamentos de Proteção Individual) em uma empresa, permitindo o controle de empréstimos, devoluções, usuários e cadastro de EPIs. Utiliza banco de dados MySQL para armazenar informações sobre usuários, EPIs, empréstimos e devoluções.
+# 🦺 Controle de EPI - Java + MySQL
 
-# Funcionalidades
-Cadastro de EPIs (Equipamentos de Proteção Individual)
+Sistema simples em **Java** com acesso a banco de dados **MySQL**, para controle de **EPIs (Equipamentos de Proteção Individual)**, **usuários**, **empréstimos** e **devoluções**.
 
-Cadastro de usuários (colaboradores)
+---
 
-Empréstimos de EPIs para usuários
+## 📋 Funcionalidades
 
-Devolução de EPIs
+- Cadastro, listagem, atualização e exclusão de:
+  - ✅ Usuários
+  - 🧤 EPIs
+  - 📄 Empréstimos
+  - 🔁 Devoluções
 
-Consulta, atualização e exclusão de EPIs, usuários e empréstimos
+- Conexão com banco de dados via JDBC  
+- Menu de console (linha de comando) para interações
 
-# Tecnologias
-Linguagem: Java
+---
 
-Banco de Dados: MySQL
+## 🧱 Tecnologias utilizadas
 
-JDBC para conexão com o banco de dados
+- Java (JDK 8+)
+- JDBC (Driver do MySQL)
+- MySQL (Banco de dados)
+- IDE recomendada: IntelliJ, NetBeans ou Eclipse
 
-# Estrutura do Projeto
--Classes principais:
+---
 
-Usuario: Representa os usuários da aplicação.
+## 🛠️ Requisitos
 
-EPI: Representa os EPIs cadastrados no sistema.
+- JDK instalado
+- MySQL Server ativo
+- Driver JDBC do MySQL (`mysql-connector-java`) adicionado ao classpath
+- Banco de dados com a seguinte estrutura:
 
-Emprestimo: Representa o empréstimo de um EPI para um usuário.
-
-Devolucao: Representa a devolução de um EPI emprestado.
-
-Conexao: Classe responsável pela conexão com o banco de dados MySQL.
-
-UsuarioDao, EPIDao, EmprestimoDao, DevolucaoDao: Classes de acesso ao banco de dados para manipulação de registros.
-
--Banco de Dados:
-
-Tabelas:
-
-usuario: Armazena informações sobre os usuários.
-
-epi: Armazena informações sobre os EPIs.
-
-emprestimo: Armazena informações sobre os empréstimos de EPIs.
-
-devolucao: Armazena informações sobre as devoluções de EPIs.
-
-# Instalação
--Pré-requisitos
-
-Java 8 ou superior
-
-MySQL
-
-IDE de desenvolvimento como IntelliJ IDEA, Eclipse ou NetBeans
-
-# Passos para executar
--Configuração do banco de dados:
-
-Crie um banco de dados MySQL com o nome controle_epi.
-
-Crie as tabelas necessárias. Aqui estão as instruções SQL para criar as tabelas:
+### 💽 Script SQL para criar o banco de dados
 
 -sql
 
@@ -118,63 +91,37 @@ CREATE TABLE devolucao (
     FOREIGN KEY (id_emprestimo) REFERENCES emprestimo(id_emprestimo)
     
 );
-# Configuração do projeto:
+## 📁 Estrutura do Projeto
 
-Baixe ou clone o repositório do projeto.
-
-Importe o projeto para sua IDE de preferência.
-
-Configure as credenciais do banco de dados na classe Conexao.java (se necessário, altere a URL, usuário e senha do MySQL).
-
-# Rodando o projeto:
-
-Execute a classe Principal.java (ou Main.java), que é o ponto de entrada da aplicação.
-
-O sistema irá pedir para você escolher a operação desejada no menu interativo:
-
-Cadastro de usuários
-
-Cadastro de EPIs
-
-Empréstimo de EPIs
-
-Devolução de EPIs
-
-Consulta e alteração de registros
-
-# Exemplo de Uso
--Cadastro de um novo usuário:
-
-Digite o nome do usuário: João Silva
-
-Digite o e-mail do usuário: joao@empresa.com
-
-Digite a senha do usuário: 123456
-
-Digite o perfil do usuário: Colaborador
+ControleEPI_ComBanco/
+├── Main.java
+├── Conexao.java
+├── EPI.java
+├── EPIDao.java
+├── Usuario.java
+├── UsuarioDao.java
+├── Emprestimo.java
+├── EmprestimoDao.java
+├── Devolucao.java
+├── DevolucaoDao.java
 
 
--Cadastro de um novo EPI:
+### ▶️ Como executar
 
-Digite o nome do EPI: Capacete
+- Execute a classe Principal.java (ou Main.java), que é o ponto de entrada da aplicação.
+- Certifique-se de que o banco de dados está criado e rodando.
+- O sistema irá pedir para você escolher a operação desejada no menu interativo:
+- Cadastro de usuários
+- Cadastro de EPIs
+- Empréstimo de EPIs
+- Devolução de EPIs
+- Consulta e alteração de registros
 
-Digite a validade do EPI (formato yyyy-MM-dd): 2026-05-01
+### ⚠️ Observações
 
+- Os IDs são auto incrementados, então ao inserir registros, não é necessário informar o ID manualmente.
+- O projeto usa Scanner para entrada de dados.
+- Este é um projeto de terminal, ideal para fins acadêmicos ou aprendizado.
 
--Empréstimo de EPI:
-
-Digite o ID do colaborador: 1
-
-Digite o ID do EPI: 2
-
-Digite a data do empréstimo (formato yyyy-MM-dd): 2025-05-01
-
-
--Devolução de EPI:
-
-Digite o ID do empréstimo: 1
-
-Digite a data de devolução (formato yyyy-MM-dd): 2025-05-15
-
-# Contribuições
+### Contribuições
 Se você deseja contribuir para este projeto, sinta-se à vontade para abrir issues ou enviar pull requests. Certifique-se de seguir as convenções de código do Java e de testar bem antes de enviar.
