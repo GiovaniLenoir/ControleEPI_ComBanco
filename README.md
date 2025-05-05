@@ -35,6 +35,8 @@ Sistema simples em **Java** com acesso a banco de dados **MySQL**, para controle
 - Driver JDBC do MySQL (`mysql-connector-java`) adicionado ao classpath
 - Banco de dados com a seguinte estrutura:
 
+---
+
 ### 💽 Script SQL para criar o banco de dados
 
 -sql
@@ -91,20 +93,24 @@ CREATE TABLE devolucao (
     FOREIGN KEY (id_emprestimo) REFERENCES emprestimo(id_emprestimo)
     
 );
+
+---
+
 ## 📁 Estrutura do Projeto
 
-ControleEPI_ComBanco/
-├── Main.java
-├── Conexao.java
-├── EPI.java
-├── EPIDao.java
-├── Usuario.java
-├── UsuarioDao.java
-├── Emprestimo.java
-├── EmprestimoDao.java
-├── Devolucao.java
-├── DevolucaoDao.java
+- ControleEPI_ComBanco/
+- ├── Main.java
+- ├── Conexao.java
+- ├── EPI.java
+- ├── EPIDao.java
+- ├── Usuario.java
+- ├── UsuarioDao.java
+- ├── Emprestimo.java
+- ├── EmprestimoDao.java
+- ├── Devolucao.java
+- ├── DevolucaoDao.java
 
+---
 
 ### ▶️ Como executar
 
@@ -117,11 +123,15 @@ ControleEPI_ComBanco/
 - Devolução de EPIs
 - Consulta e alteração de registros
 
+---
+
 ### ⚠️ Observações
 
 - Os IDs são auto incrementados, então ao inserir registros, não é necessário informar o ID manualmente.
 - O projeto usa Scanner para entrada de dados.
 - Este é um projeto de terminal, ideal para fins acadêmicos ou aprendizado.
+
+---
 
 ### Contribuições
 Se você deseja contribuir para este projeto, sinta-se à vontade para abrir issues ou enviar pull requests. Certifique-se de seguir as convenções de código do Java e de testar bem antes de enviar.
