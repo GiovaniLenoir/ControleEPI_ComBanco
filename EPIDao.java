@@ -36,7 +36,7 @@ public class EPIDao {
     }
 
     public void atualizarEPI(EPI epi) {
-        String sql = "UPDATE epi SET nome = ?, quantidade = ? WHERE id = ?";
+        String sql = "UPDATE epi SET nome = ?, quantidade = ? WHERE id_epi = ?";
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, epi.getNome());
@@ -54,7 +54,7 @@ public class EPIDao {
     }
 
     public void excluirEPI(int id) {
-        String sql = "DELETE FROM epi WHERE id = ?";
+        String sql = "DELETE FROM epi WHERE id_epi = ?";
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);

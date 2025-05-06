@@ -68,7 +68,7 @@ public class Principal {
                     email = scanner.nextLine();
                     System.out.print("Nova senha: ");
                     senha = scanner.nextLine();
-                    System.out.print("Novo perfil: ");
+                    System.out.print("Novo perfil (administrador/colaborador/gerente): ");
                     perfil = scanner.nextLine();
                     Usuario uAtualizado = new Usuario(idU, nome, email, senha, perfil);
                     usuarioDao.atualizarUsuario(uAtualizado);
@@ -167,7 +167,7 @@ public class Principal {
                 case 13:
                     System.out.print("ID do empréstimo: ");
                     int idEmpDev = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Data da devolução (AAAA-MM-DD): ");
+                    System.out.print("Data da devolução (YYYY-MM-DD HH:MM:SS): ");
                     String dataDevolucao = scanner.nextLine();
                     Devolucao dev = new Devolucao(idEmpDev, dataDevolucao);
                     devolucaoDao.inserirDevolucao(dev);
@@ -187,7 +187,7 @@ public class Principal {
                     int idDev = Integer.parseInt(scanner.nextLine());
                     System.out.print("Novo ID do empréstimo: ");
                     int novoIdEmpDev = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Nova data da devolução (AAAA-MM-DD): ");
+                    System.out.print("Nova data da devolução (YYYY-MM-DD HH:MM:SS): ");
                     String novaDataDev = scanner.nextLine();
                     Devolucao devAtualizada = new Devolucao(idDev, novoIdEmpDev, novaDataDev);
                     devolucaoDao.atualizarDevolucao(devAtualizada);
