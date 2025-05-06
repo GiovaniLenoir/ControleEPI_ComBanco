@@ -23,7 +23,7 @@ public class EPIDao {
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 EPI epi = new EPI(
-                        rs.getInt("id"),
+                        rs.getInt("id_epi"),
                         rs.getString("nome"),
                         rs.getInt("quantidade")
                 );
