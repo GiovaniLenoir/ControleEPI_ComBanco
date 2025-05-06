@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -50,7 +51,12 @@ public class Principal {
                     break;
 
                 case 2:
-                    usuarioDao.listarUsuarios().forEach(System.out::println);
+                    List<Usuario> usuarios = usuarioDao.listarUsuarios();
+                    if (usuarios == null || usuarios.isEmpty()){
+                        System.out.println("Nenhum usuário encontrado.");
+                    }else {
+                        usuarios.forEach(System.out::println);
+                    }
                     break;
 
                 case 3:
@@ -84,7 +90,12 @@ public class Principal {
                     break;
 
                 case 6:
-                    epiDao.listarEPIs().forEach(System.out::println);
+                    List<EPI> epis = epiDao.listarEPIs();
+                    if (epis == null || epis.isEmpty()){
+                        System.out.println("Nenhum EPI encontrado.");
+                    }else {
+                        epis.forEach(System.out::println);
+                    }
                     break;
 
                 case 7:
@@ -121,7 +132,12 @@ public class Principal {
                     break;
 
                 case 10:
-                    emprestimoDao.listarEmprestimos().forEach(System.out::println);
+                    List<Emprestimo> emprestimos = emprestimoDao.listarEmprestimos();
+                    if (emprestimos == null || emprestimos.isEmpty()){
+                        System.out.println("Nenhum empréstimo encontrado.");
+                    }else {
+                        emprestimos.forEach(System.out::println);
+                    }
                     break;
 
                 case 11:
@@ -158,7 +174,12 @@ public class Principal {
                     break;
 
                 case 14:
-                    devolucaoDao.listarDevolucoes().forEach(System.out::println);
+                    List<Devolucao> devolucaos = devolucaoDao.listarDevolucoes();
+                    if (devolucaos == null || devolucaos.isEmpty()){
+                        System.out.println("Nenhuma devolução encontrada.");
+                    }else {
+                        devolucaos.forEach(System.out::println);
+                    }
                     break;
 
                 case 15:

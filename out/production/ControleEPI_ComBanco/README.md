@@ -39,7 +39,7 @@ Sistema simples em **Java** com acesso a banco de dados **MySQL**, para controle
 
 ### 💽 Script SQL para criar o banco de dados
 
--sql
+- Arquivo SQL para adicionar o banco de dados controle_epi
 
 - CREATE TABLE usuario (
     - id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -80,6 +80,7 @@ Sistema simples em **Java** com acesso a banco de dados **MySQL**, para controle
 - ControleEPI_ComBanco/
 - ├── Main.java
 - ├── Conexao.java
+- ├── controle_epi.sql
 - ├── EPI.java
 - ├── EPIDao.java
 - ├── Usuario.java
