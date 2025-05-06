@@ -91,7 +91,7 @@ public class Principal {
 
                 case 6:
                     List<EPI> epis = epiDao.listarEPIs();
-                    if (epis == null || epis.isEmpty()){
+                   if (epis == null || epis.isEmpty()){
                         System.out.println("Nenhum EPI encontrado.");
                     }else {
                         epis.forEach(System.out::println);
