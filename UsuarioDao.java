@@ -108,7 +108,7 @@ public class UsuarioDao {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao excluir usuário: " + e.getMessage());
+            System.out.println("Erro ao excluir usuário: ID usuário inexistente no banco ");
         }
     }
 }

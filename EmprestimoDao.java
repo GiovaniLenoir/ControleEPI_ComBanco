@@ -84,7 +84,7 @@ public class EmprestimoDao {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao excluir empréstimo: " + e.getMessage());
+            System.out.println("Erro ao excluir empréstimo: ID empréstimo inexistente no banco");
         }
     }
 }

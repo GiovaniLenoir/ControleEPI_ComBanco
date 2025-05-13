@@ -75,7 +75,7 @@ public class DevolucaoDao {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao excluir devolução: " + e.getMessage());
+            System.out.println("Erro ao excluir devolução: ID devolução inexistente no banco");
         }
     }
 }

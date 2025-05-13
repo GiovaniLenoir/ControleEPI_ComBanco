@@ -75,7 +75,7 @@ public class EPIDao {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao excluir EPI: " + e.getMessage());
+            System.out.println("Erro ao excluir EPI: ID EPI inexistente no banco");
         }
     }
 }
