@@ -87,16 +87,25 @@ public class UsuarioDao {
     }
 
     public void excluirUsuario(int id) {
-        String sql = "DELETE FROM usuario WHERE id_usuario = ?";
+        String verificarSql = "SELECT COUNT(*) FROM emprestimo WHERE id_usuario = ?";
+        String excluirsql = "DELETE FROM usuario WHERE id_usuario = ?";
         try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement verificarStmt = conn.prepareStatement(verificarSql)) {
 
-            stmt.setInt(1, id);
-            int rows = stmt.executeUpdate();
-            if (rows > 0) {
-                System.out.println("Usuário excluído com sucesso!");
-            } else {
-                System.out.println("Usuário não encontrado.");
+            verificarStmt.setInt(1, id);
+            ResultSet rs = verificarStmt.executeQuery();
+            if (rs.next() && rs.getInt(1)> 0) {
+                System.out.println("Erro: não é possivel excluir. Existem empréstimos vinculados a este usuário ");
+                return;
+            }
+            try (PreparedStatement excluirStmt = conn.prepareStatement(excluirsql)){
+                excluirStmt.setInt(1, id);
+                int rows = excluirStmt.executeUpdate();
+                if (rows > 0 ){
+                    System.out.println("Usuário excluido com sucesso ");
+                }else {
+                    System.out.println("Usuário não encontrado ");
+                }
             }
         } catch (SQLException e) {
             System.out.println("Erro ao excluir usuário: " + e.getMessage());
