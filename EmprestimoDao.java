@@ -63,15 +63,25 @@ public class EmprestimoDao {
     }
 
     public void excluirEmprestimo(int id) {
-        String sql = "DELETE FROM emprestimo WHERE id_emprestimo = ?";
+        String verificarSql = "SELECT COUNT(*) FROM emprestimo WHERE id_emprestimo = ?";
+        String excluirsql = "DELETE FROM emprestimo WHERE id_emprestimo = ?";
         try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            int linhasAfetadas = stmt.executeUpdate();
-            if (linhasAfetadas > 0) {
-                System.out.println("Empréstimo excluído com sucesso!");
-            } else {
-                System.out.println("Empréstimo não encontrado.");
+             PreparedStatement verificarStmt = conn.prepareStatement(verificarSql)) {
+
+            verificarStmt.setInt(1, id);
+            ResultSet rs = verificarStmt.executeQuery();
+            if (rs.next() && rs.getInt(1)> 0) {
+                System.out.println("Erro: não é possivel excluir. Existem empréstimos vinculados a este empréstimo ");
+                return;
+            }
+            try (PreparedStatement excluirStmt = conn.prepareStatement(excluirsql)){
+                excluirStmt.setInt(1, id);
+                int rows = excluirStmt.executeUpdate();
+                if (rows > 0 ){
+                    System.out.println("Empréstimo excluido com sucesso ");
+                }else {
+                    System.out.println("Empréstimo não encontrado ");
+                }
             }
         } catch (SQLException e) {
             System.out.println("Erro ao excluir empréstimo: " + e.getMessage());
