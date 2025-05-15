@@ -32,7 +32,7 @@ public class UsuarioDao {
             stmt.executeUpdate();
             System.out.println("Usuário inserido com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir usuário: " + e.getMessage());
+            System.out.println("Erro ao inserir usuário: Não foi possivel inserir o usuário ");
         }
     }
 
@@ -54,7 +54,7 @@ public class UsuarioDao {
                 lista.add(u);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao listar usuários: " + e.getMessage());
+            System.out.println("Erro ao listar usuários: Lista de usuários não encontrada ");
         }
         return lista;
     }
@@ -82,7 +82,7 @@ public class UsuarioDao {
                 System.out.println("Usuário não encontrado.");
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar usuário: " + e.getMessage());
+            System.out.println("Erro ao atualizar usuário: ID usuário não encontrado ");
         }
     }
 

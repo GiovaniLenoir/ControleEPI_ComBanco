@@ -11,7 +11,7 @@ public class EPIDao {
             stmt.executeUpdate();
             System.out.println("EPI inserido com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir EPI: " + e.getMessage());
+            System.out.println("Erro ao inserir EPI: Revise os dados e refaça a operação ");
         }
     }
 
@@ -30,7 +30,7 @@ public class EPIDao {
                 lista.add(epi);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao listar EPIs: " + e.getMessage());
+            System.out.println("Erro ao listar EPIs: Lista de EPIs não encontrada ");
         }
         return lista;
     }
@@ -49,7 +49,7 @@ public class EPIDao {
                 System.out.println("EPI não encontrado para atualização.");
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar EPI: " + e.getMessage());
+            System.out.println("Erro ao atualizar EPI: EPI inexistente no banco ");
         }
     }
 

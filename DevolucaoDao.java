@@ -11,7 +11,7 @@ public class DevolucaoDao {
             stmt.executeUpdate();
             System.out.println("Devolução registrada com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir devolução: " + e.getMessage());
+            System.out.println("Erro ao inserir devolução: Devolução não encontrada ");
         }
     }
 
@@ -30,7 +30,7 @@ public class DevolucaoDao {
                 lista.add(dev);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao listar devoluções: " + e.getMessage());
+            System.out.println("Erro ao listar devoluções: Lista de devoluções não encontrada ");
         }
         return lista;
     }
@@ -49,7 +49,7 @@ public class DevolucaoDao {
                 System.out.println("Devolução não encontrada.");
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar devolução: " + e.getMessage());
+            System.out.println("Erro ao atualizar devolução: Verifique os dados da devolução ");
         }
     }
 
